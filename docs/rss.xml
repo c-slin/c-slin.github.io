@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>陈书琳</title><link>https://c-slin.github.io</link><description>我的小世界</description><copyright>陈书琳</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://c-slin.github.io</link></image><lastBuildDate>Sun, 30 Jun 2024 14:33:51 +0000</lastBuildDate><managingEditor>陈书琳</managingEditor><ttl>60</ttl><webMaster>陈书琳</webMaster><item><title>(7) Hardhat 极速教程 - Fork 网络</title><link>https://c-slin.github.io/post/%287%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20Fork%20-wang-luo.html</link><description># Fork 网络&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>陈书琳</title><link>https://c-slin.github.io</link><description>我的小世界</description><copyright>陈书琳</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://c-slin.github.io</link></image><lastBuildDate>Sun, 30 Jun 2024 14:39:25 +0000</lastBuildDate><managingEditor>陈书琳</managingEditor><ttl>60</ttl><webMaster>陈书琳</webMaster><item><title>(7) Hardhat 极速教程 - Fork 网络</title><link>https://c-slin.github.io/post/%287%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20Fork%20-wang-luo.html</link><description># Fork 网络&#13;
 &#13;
 &gt; 本质是创建目标网络的分叉链，注意这不会拉取所有数据，而是要用到什么数据就拉取哪部分数据。</description><guid isPermaLink="true">https://c-slin.github.io/post/%287%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20Fork%20-wang-luo.html</guid><pubDate>Sun, 30 Jun 2024 14:33:30 +0000</pubDate></item><item><title>(6) Hardhat 极速教程 - 运行时</title><link>https://c-slin.github.io/post/%286%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-yun-xing-shi.html</link><description># 运行时&#13;
 &#13;
@@ -32,7 +32,7 @@ contract Add {&#13;
 &#13;
 &#13;
 ### &lt;span style='color: red'&gt;编译合约&lt;/span&gt;&#13;
-这将会把 `contracts/` 目录下的所有合约进行编译，生成文件在 `artifacts/` 目录。</description><guid isPermaLink="true">https://c-slin.github.io/post/%283%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-he-yue-cao-zuo.html</guid><pubDate>Sun, 30 Jun 2024 14:30:32 +0000</pubDate></item><item><title>Hardhat 极速教程 - 快速开始</title><link>https://c-slin.github.io/post/Hardhat%20-ji-su-jiao-cheng-%20-%20-kuai-su-kai-shi.html</link><description># 快速开始&#13;
+这将会把 `contracts/` 目录下的所有合约进行编译，生成文件在 `artifacts/` 目录。</description><guid isPermaLink="true">https://c-slin.github.io/post/%283%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-he-yue-cao-zuo.html</guid><pubDate>Sun, 30 Jun 2024 14:30:32 +0000</pubDate></item><item><title>(2) Hardhat 极速教程 - 快速开始</title><link>https://c-slin.github.io/post/%282%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-kuai-su-kai-shi.html</link><description># 快速开始&#13;
 &#13;
 &gt; Hardhat 项目依赖于 npm 工程&#13;
 &#13;
@@ -56,7 +56,7 @@ npx hardhat&#13;
 ```&#13;
 通过键盘上下移动选择`Create a JavaScript project`&#13;
 &#13;
-初始化后，以后输入`npx hardhat`出来的是 hardhat 的帮助信息。</description><guid isPermaLink="true">https://c-slin.github.io/post/Hardhat%20-ji-su-jiao-cheng-%20-%20-kuai-su-kai-shi.html</guid><pubDate>Sun, 30 Jun 2024 14:23:37 +0000</pubDate></item><item><title>关于</title><link>https://c-slin.github.io/post/guan-yu.html</link><description>这是内容。</description><guid isPermaLink="true">https://c-slin.github.io/post/guan-yu.html</guid><pubDate>Sun, 30 Jun 2024 14:02:44 +0000</pubDate></item><item><title>(1) Hardhat 极速教程 - 前言</title><link>https://c-slin.github.io/post/%281%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-qian-yan.html</link><description># 前言&#13;
+初始化后，以后输入`npx hardhat`出来的是 hardhat 的帮助信息。</description><guid isPermaLink="true">https://c-slin.github.io/post/%282%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-kuai-su-kai-shi.html</guid><pubDate>Sun, 30 Jun 2024 14:23:37 +0000</pubDate></item><item><title>关于</title><link>https://c-slin.github.io/post/guan-yu.html</link><description>这是内容。</description><guid isPermaLink="true">https://c-slin.github.io/post/guan-yu.html</guid><pubDate>Sun, 30 Jun 2024 14:02:44 +0000</pubDate></item><item><title>(1) Hardhat 极速教程 - 前言</title><link>https://c-slin.github.io/post/%281%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-qian-yan.html</link><description># 前言&#13;
 &#13;
 &gt; 作者使用的 Nodejs 版本为 `v18.16.0`&#13;
 &#13;
