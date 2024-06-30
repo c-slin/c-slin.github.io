@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# Fork 网络
+
+> 本质是创建目标网络的分叉链，注意这不会拉取所有数据，而是要用到什么数据就拉取哪部分数据。">
+<meta property="og:title" content="(7) Hardhat 极速教程 - Fork 网络">
+<meta property="og:description" content="# Fork 网络
+
+> 本质是创建目标网络的分叉链，注意这不会拉取所有数据，而是要用到什么数据就拉取哪部分数据。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://c-slin.github.io/post/%287%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20Fork%20-wang-luo.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>(7) Hardhat 极速教程 - Fork 网络</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">(7) Hardhat 极速教程 - Fork 网络</h1>
+<div class="title-right">
+    <a href="https://c-slin.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/c-slin/c-slin.github.io/issues/8" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Fork 网络</h1>
+<blockquote>
+<p>本质是创建目标网络的分叉链，注意这不会拉取所有数据，而是要用到什么数据就拉取哪部分数据。</p>
+</blockquote>
+<p>完成这个事情共2步骤</p>
+<ul>
+<li>
+<ol>
+<li>节点配置</li>
+</ol>
+</li>
+</ul>
+<p>在 <code class="notranslate">hardhat.config.js</code> 配置</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">networks: <span class="pl-kos">{</span>
+  <span class="pl-c1">hardhat</span>: <span class="pl-kos">{</span>
+    <span class="pl-c1">forking</span>: <span class="pl-kos">{</span>
+      <span class="pl-c1">url</span>: <span class="pl-s">"https://mainnet.infura.io/v3/&lt;key&gt;"</span><span class="pl-kos">,</span>
+    <span class="pl-kos">}</span>
+  <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p>默认情况下将从最近的主网区块中分叉。但是我们建议从特定的块号进行分叉（防止出现奇奇怪怪的结果）。</p>
+<div class="highlight highlight-source-js"><pre class="notranslate">networks: <span class="pl-kos">{</span>
+  <span class="pl-c1">hardhat</span>: <span class="pl-kos">{</span>
+    <span class="pl-c1">forking</span>: <span class="pl-kos">{</span>
+      <span class="pl-c1">url</span>: <span class="pl-s">"https://mainnet.infura.io/v3/&lt;key&gt;"</span><span class="pl-kos">,</span>
+      <span class="pl-c1">blockNumber</span>: <span class="pl-c1">14390000</span>
+    <span class="pl-kos">}</span>
+  <span class="pl-kos">}</span>
+<span class="pl-kos">}</span></pre></div>
+<p>或者通过命令行启动节点</p>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">npx hardhat node --fork https://goerli.infura.io/v3/<span class="pl-k">&lt;</span>key<span class="pl-k">&gt;</span></pre></div>
+<p>输出</p>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">Started HTTP and WebSocket JSON-RPC server <span class="pl-k">at</span> http://127.0.0.1:8545/
+
+Accounts
+<span class="pl-k">========</span>
+
+WARNING: These accounts, and their private keys, are publicly known.
+Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+
+Account #0: <span class="pl-c1">0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80</span>
+
+Account #1: <span class="pl-c1">0x70997970C51812dc3A010C7d01b50e0d17dc79C8</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d</span>
+
+Account #2: <span class="pl-c1">0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a</span>
+
+Account #3: <span class="pl-c1">0x90F79bf6EB2c4f870365E785982E1f101E93b906</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6</span>
+
+Account #4: <span class="pl-c1">0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a</span>
+
+Account #5: <span class="pl-c1">0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba</span>
+
+Account #6: <span class="pl-c1">0x976EA74026E726554dB657fA54763abd0C3a0aa9</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e</span>
+
+Account #7: <span class="pl-c1">0x14dC79964da2C08b23698B3D3cc7Ca32193d9955</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356</span>
+
+Account #8: <span class="pl-c1">0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97</span>
+
+Account #9: <span class="pl-c1">0xa0Ee7A142d267C1f36714E4a8F75612F20a79720</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6</span>
+
+Account #10: <span class="pl-c1">0xBcd4042DE499D14e55001CcbB24a551F3b954096</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897</span>
+
+Account #11: <span class="pl-c1">0x71bE63f3384f5fb98995898A86B02Fb2426c5788</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82</span>
+
+Account #12: <span class="pl-c1">0xFABB0ac9d68B0B445fB7357272Ff202C5651694a</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1</span>
+
+Account #13: <span class="pl-c1">0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd</span>
+
+Account #14: <span class="pl-c1">0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa</span>
+
+Account #15: <span class="pl-c1">0xcd3B766CCDd6AE721141F452C550Ca635964ce71</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61</span>
+
+Account #16: <span class="pl-c1">0x2546BcD3c84621e976D8185a91A922aE77ECEc30</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0</span>
+
+Account #17: <span class="pl-c1">0xbDA5747bFD65F08deb54cb465eB87D40e51B197E</span> (10000 ETH)
+Private Key: <span class="pl-c1">0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd</span>
+
+Account #18: <span class="pl-c1">0xdD2FD4581271e230360230F9337D5c0430Bf44C0</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0</span>
+
+Account #19: <span class="pl-c1">0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199</span> (10000 ETH)
+Private Key: <span class="pl-c1">0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e</span>
+
+WARNING: These accounts, and their private keys, are publicly known.
+Any funds sent to them on Mainnet or any other live network WILL BE LOST.</pre></div>
+<ul>
+<li>
+<ol start="2">
+<li>代码应用</li>
+</ol>
+</li>
+</ul>
+<h4><span>模拟账户</span></h4>
+<p>Hardhat Network 允许您模拟任何地址。即使您无权访问其私钥，这也可以让您从该帐户发送交易。</p>
+<p>下面是根据在 <code class="notranslate">hardhat.config.js</code>配置 fork 后的代码示例:</p>
+<ul>
+<li>合约部分</li>
+</ul>
+<div class="highlight highlight-source-gerber"><pre class="notranslate">pragma solidity ^<span class="pl-c1">0.8.9</span>;
+
+contract Fork {
+    address immutable public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, "Only the owner can call this function.");
+        _;
+    }
+
+    function test(uint a, uint b) public onlyOwner view returns(uint) {
+        return a+b;
+    }
+}</pre></div>
+<p>作者已在 goerli 部署该合约，地址:  <code class="notranslate">0x1BC902734C51711301aee8D78a37CdAbF4123c57</code></p>
+<ul>
+<li>脚本部分<code class="notranslate">scripts/fork.js</code></li>
+</ul>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-kos">{</span> ethers <span class="pl-kos">}</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"hardhat"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-en">transfer</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+    <span class="pl-k">const</span> <span class="pl-kos">[</span><span class="pl-s1">sender</span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">ethers</span><span class="pl-kos">.</span><span class="pl-en">getSigners</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">const</span> <span class="pl-s1">recipientAddress</span> <span class="pl-c1">=</span> <span class="pl-s">"0x05421c943Db220a71531fD76E0267813a15cAB05"</span><span class="pl-kos">;</span> 
+    <span class="pl-k">const</span> <span class="pl-s1">amount</span> <span class="pl-c1">=</span> <span class="pl-v">BigInt</span><span class="pl-kos">(</span><span class="pl-s">"1000000000000000000"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">const</span> <span class="pl-s1">tx</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">sender</span><span class="pl-kos">.</span><span class="pl-en">sendTransaction</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
+        <span class="pl-c1">to</span>: <span class="pl-s1">recipientAddress</span><span class="pl-kos">,</span>
+        <span class="pl-c1">value</span>: <span class="pl-s1">amount</span><span class="pl-kos">,</span>
+    <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">await</span> <span class="pl-s1">tx</span><span class="pl-kos">.</span><span class="pl-en">wait</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"转账完成！"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+
+<span class="pl-kos">(</span><span class="pl-k">async</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+    <span class="pl-c">// 冒充所有者地址</span>
+  <span class="pl-k">await</span> <span class="pl-s1">hre</span><span class="pl-kos">.</span><span class="pl-c1">network</span><span class="pl-kos">.</span><span class="pl-c1">provider</span><span class="pl-kos">.</span><span class="pl-en">request</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
+    <span class="pl-c1">method</span>: <span class="pl-s">"hardhat_impersonateAccount"</span><span class="pl-kos">,</span>
+    <span class="pl-c1">params</span>: <span class="pl-kos">[</span><span class="pl-s">"0x05421c943Db220a71531fD76E0267813a15cAB05"</span><span class="pl-kos">]</span>
+  <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+  <span class="pl-c">// 让签名者冒充所有者地址</span>
+  <span class="pl-k">const</span> <span class="pl-s1">ownerSigner</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">ethers</span><span class="pl-kos">.</span><span class="pl-en">getSigner</span><span class="pl-kos">(</span><span class="pl-s">"0x05421c943Db220a71531fD76E0267813a15cAB05"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+  <span class="pl-c">// 获取部署的合约实例</span>
+  <span class="pl-k">const</span> <span class="pl-s1">contractAddress</span> <span class="pl-c1">=</span> <span class="pl-s">"0x1BC902734C51711301aee8D78a37CdAbF4123c57"</span><span class="pl-kos">;</span>
+  
+  <span class="pl-c">// 作者账户余额不足才需要这样，如果你够的话可以不用管这步骤</span>
+  <span class="pl-k">await</span> <span class="pl-en">transfer</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+
+  <span class="pl-k">const</span> <span class="pl-v">Fork</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">ethers</span><span class="pl-kos">.</span><span class="pl-en">getContractFactory</span><span class="pl-kos">(</span><span class="pl-s">"Fork"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+  <span class="pl-k">const</span> <span class="pl-s1">fork</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-v">Fork</span><span class="pl-kos">.</span><span class="pl-en">attach</span><span class="pl-kos">(</span><span class="pl-s1">contractAddress</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+  <span class="pl-c">// 使用所有者签名者连接到已部署的合约</span>
+  <span class="pl-k">const</span> <span class="pl-s1">connectedContract</span> <span class="pl-c1">=</span> <span class="pl-s1">fork</span><span class="pl-kos">.</span><span class="pl-en">connect</span><span class="pl-kos">(</span><span class="pl-s1">ownerSigner</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+  <span class="pl-c">// 函数调用</span>
+  <span class="pl-k">const</span> <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">connectedContract</span><span class="pl-kos">.</span><span class="pl-en">test</span><span class="pl-kos">(</span><span class="pl-c1">1</span><span class="pl-kos">,</span> <span class="pl-c1">21111</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+  <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">'执行成功！'</span><span class="pl-kos">)</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div>
+<ul>
+<li>执行</li>
+</ul>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">npx hardhat run .\scripts\fork.js --network hardhat</pre></div>
+<ul>
+<li>输出</li>
+</ul>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">转账完成！
+执行成功！</pre></div></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://c-slin.github.io"> 陈书琳 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","c-slin/c-slin.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+<script src='https://sdk.51.la/perf/js-sdk-perf.min.js' crossorigin='anonymous'></script><script>new LingQue.Monitor().init({id:'3Iu1d74aIvIuUyN7'});</script>
+
+</html>
