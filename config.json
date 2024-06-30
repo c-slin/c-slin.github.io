@@ -3,5 +3,5 @@
     "subTitle":"我的小世界",
     "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
     "GMEEK_VERSION":"last",
-    "script":"<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>new LingQue.Monitor().init({id:"3Iu1d74aIvIuUyN7"});</script>"
+    "script":"<script src='https://sdk.51.la/perf/js-sdk-perf.min.js' crossorigin='anonymous'></script><script>new LingQue.Monitor().init({id:'3Iu1d74aIvIuUyN7'});</script>"
 }
