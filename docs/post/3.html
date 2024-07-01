@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -64,7 +64,7 @@ npx hardhat
 <meta property="og:url" content="http://c-slin.icu/post/3.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>(2) Hardhat 极速教程 - 快速开始</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -123,21 +123,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>Hardhat 项目依赖于 npm 工程</p>
 </blockquote>
 <h3><span>创建 npm 工程</span></h3>
-<pre lang="cmd" class="notranslate"><code class="notranslate">mkdir a1
-cd a1
-npm init -y
-</code></pre>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate"><span class="pl-k">mkdir</span> a1
+<span class="pl-k">cd</span> a1
+npm init -y</pre></div>
 <h3><span>引入 hardhat 依赖</span></h3>
-<pre lang="cmd" class="notranslate"><code class="notranslate">npm install --save-dev hardhat
-</code></pre>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">npm install --save-dev hardhat</pre></div>
 <h3><span>初始化 hardhat 工程</span></h3>
-<pre lang="cmd" class="notranslate"><code class="notranslate">npx hardhat
-</code></pre>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">npx hardhat</pre></div>
 <p>通过键盘上下移动选择<code class="notranslate">Create a JavaScript project</code></p>
 <p>初始化后，以后输入<code class="notranslate">npx hardhat</code>出来的是 hardhat 的帮助信息</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="http://c-slin.icu"> 陈书琳 </a>
 <p>
@@ -192,6 +191,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");
