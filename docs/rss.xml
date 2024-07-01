@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>陈书琳</title><link>http://c-slin.icu</link><description>我的小世界</description><copyright>陈书琳</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>http://c-slin.icu</link></image><lastBuildDate>Mon, 01 Jul 2024 04:40:44 +0000</lastBuildDate><managingEditor>陈书琳</managingEditor><ttl>60</ttl><webMaster>陈书琳</webMaster><item><title>(7) Hardhat 极速教程 - Fork 网络</title><link>http://c-slin.icu/post/8.html</link><description># Fork 网络&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>陈书琳</title><link>http://c-slin.icu</link><description>我的小世界</description><copyright>陈书琳</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>http://c-slin.icu</link></image><lastBuildDate>Mon, 01 Jul 2024 04:49:58 +0000</lastBuildDate><managingEditor>陈书琳</managingEditor><ttl>60</ttl><webMaster>陈书琳</webMaster><item><title>(7) Hardhat 极速教程 - Fork 网络</title><link>http://c-slin.icu/post/8.html</link><description># Fork 网络&#13;
 &#13;
 &gt; 本质是创建目标网络的分叉链，注意这不会拉取所有数据，而是要用到什么数据就拉取哪部分数据。</description><guid isPermaLink="true">http://c-slin.icu/post/8.html</guid><pubDate>Sun, 30 Jun 2024 14:33:30 +0000</pubDate></item><item><title>(6) Hardhat 极速教程 - 运行时</title><link>http://c-slin.icu/post/7.html</link><description># 运行时&#13;
 &#13;
@@ -56,7 +56,7 @@ npx hardhat&#13;
 ```&#13;
 通过键盘上下移动选择`Create a JavaScript project`&#13;
 &#13;
-初始化后，以后输入`npx hardhat`出来的是 hardhat 的帮助信息。</description><guid isPermaLink="true">http://c-slin.icu/post/3.html</guid><pubDate>Sun, 30 Jun 2024 14:23:37 +0000</pubDate></item><item><title>关于</title><link>http://c-slin.icu/post/2.html</link><description>这是内容。</description><guid isPermaLink="true">http://c-slin.icu/post/2.html</guid><pubDate>Sun, 30 Jun 2024 14:02:44 +0000</pubDate></item><item><title>(1) Hardhat 极速教程 - 前言</title><link>http://c-slin.icu/post/1.html</link><description># 前言&#13;
+初始化后，以后输入`npx hardhat`出来的是 hardhat 的帮助信息。</description><guid isPermaLink="true">http://c-slin.icu/post/3.html</guid><pubDate>Sun, 30 Jun 2024 14:23:37 +0000</pubDate></item><item><title>关于 （联系方式）</title><link>http://c-slin.icu/post/2.html</link><description>这是内容。</description><guid isPermaLink="true">http://c-slin.icu/post/2.html</guid><pubDate>Sun, 30 Jun 2024 14:02:44 +0000</pubDate></item><item><title>(1) Hardhat 极速教程 - 前言</title><link>http://c-slin.icu/post/1.html</link><description># 前言&#13;
 &#13;
 &gt; 作者使用的 Nodejs 版本为 `v18.16.0`&#13;
 &#13;
