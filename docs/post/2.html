@@ -9,18 +9,14 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 控制台
-
-> 这个东西其实没什么好讲的，不好用，关键时候还得是编写脚本而不是在控制台瞎写。">
-<meta property="og:title" content="(5) Hardhat 极速教程 - 控制台">
-<meta property="og:description" content="# 控制台
-
-> 这个东西其实没什么好讲的，不好用，关键时候还得是编写脚本而不是在控制台瞎写。">
+<meta name="description" content="这是内容。">
+<meta property="og:title" content="关于">
+<meta property="og:description" content="这是内容。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://c-slin.github.io/post/%285%29%20Hardhat%20-ji-su-jiao-cheng-%20-%20-kong-zhi-tai.html">
+<meta property="og:url" content="https://c-slin.icu/post/2.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
-<title>(5) Hardhat 极速教程 - 控制台</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<title>关于</title>
+
 
 </head>
 <style>
@@ -50,15 +46,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">(5) Hardhat 极速教程 - 控制台</h1>
+<h1 class="postTitle">关于</h1>
 <div class="title-right">
-    <a href="https://c-slin.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://c-slin.icu" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/c-slin/c-slin.github.io/issues/6" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/c-slin/c-slin.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -74,32 +70,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>控制台</h1>
-<blockquote>
-<p>这个东西其实没什么好讲的，不好用，关键时候还得是编写脚本而不是在控制台瞎写。</p>
-</blockquote>
-<p>Hardhat内置了一个交互式JavaScript控制台</p>
-<div class="highlight highlight-source-batchfile"><pre class="notranslate">npx hardhat console</pre></div>
-<p>注意: <code class="notranslate">编译任务将在打开控制台提示之前被调用，但您可以使用--no编译参数跳过此操作。</code></p>
-<p>控制台的执行环境与任务、脚本和测试的执行环境相同。这意味着配置已经被处理，并且Hardhat运行时环境已经被初始化并注入到全局范围中。</p>
-<h3><span>执行脚本</span></h3>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-s1">scriptResult</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-en">run</span><span class="pl-kos">(</span><span class="pl-s">"scripts/deploy.js"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">scriptResult</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<h3><span>合约交互</span></h3>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">const</span> <span class="pl-s1">hre</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"hardhat"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-
-<span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-en">main</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-    <span class="pl-k">const</span> <span class="pl-s1">add</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">hre</span><span class="pl-kos">.</span><span class="pl-c1">ethers</span><span class="pl-kos">.</span><span class="pl-en">deployContract</span><span class="pl-kos">(</span><span class="pl-s">"Add"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-k">await</span> <span class="pl-s1">add</span><span class="pl-kos">.</span><span class="pl-en">waitForDeployment</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span> <span class="pl-s">`Add deployed to <span class="pl-s1"><span class="pl-kos">${</span><span class="pl-s1">add</span><span class="pl-kos">.</span><span class="pl-c1">target</span><span class="pl-kos">}</span></span>`</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-kos">}</span>
-
-<span class="pl-en">main</span><span class="pl-kos">(</span><span class="pl-kos">)</span></pre></div></div>
+<div class="markdown-body" id="postBody"><p>这是内容</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://c-slin.github.io"> 陈书琳 </a>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://c-slin.icu"> 陈书琳 </a>
 <p>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>

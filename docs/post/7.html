@@ -9,14 +9,20 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="这是内容。">
-<meta property="og:title" content="关于">
-<meta property="og:description" content="这是内容。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://c-slin.github.io/post/guan-yu.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
-<title>关于</title>
+<meta name="description" content="# 运行时
 
+> 可以将Hardhat运行时视为整个Hardhat框架及其相关依赖的总称
+> Hardhat运行时包括Hardhat框架本身以及其所依赖的各种模块、库和工具。">
+<meta property="og:title" content="(6) Hardhat 极速教程 - 运行时">
+<meta property="og:description" content="# 运行时
+
+> 可以将Hardhat运行时视为整个Hardhat框架及其相关依赖的总称
+> Hardhat运行时包括Hardhat框架本身以及其所依赖的各种模块、库和工具。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://c-slin.icu/post/7.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>(6) Hardhat 极速教程 - 运行时</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -46,15 +52,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">关于</h1>
+<h1 class="postTitle">(6) Hardhat 极速教程 - 运行时</h1>
 <div class="title-right">
-    <a href="https://c-slin.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="https://c-slin.icu" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/c-slin/c-slin.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/c-slin/c-slin.github.io/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -70,12 +76,50 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>这是内容</p></div>
+<div class="markdown-body" id="postBody"><h1>运行时</h1>
+<blockquote>
+<p>可以将Hardhat运行时视为整个Hardhat框架及其相关依赖的总称<br>
+Hardhat运行时包括Hardhat框架本身以及其所依赖的各种模块、库和工具。</p>
+</blockquote>
+<p>简而言之，Hardhat运行时(HRE) = Hardhat</p>
+<p>HRE 就是一整个Hardhat工具箱，可以通过 HRE 来实现所有事情，它包含了一切 Hardhat 的依赖</p>
+<p>示例<code class="notranslate">scripts/hre.js</code></p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// 导入所需的模块</span>
+<span class="pl-k">const</span> <span class="pl-kos">{</span> ethers<span class="pl-kos">,</span> run <span class="pl-kos">}</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"hardhat"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-c">// 定义一个异步函数来包装我们的代码逻辑</span>
+<span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-en">main</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+    <span class="pl-c">// 获取默认的以太坊提供商</span>
+    <span class="pl-k">const</span> <span class="pl-s1">provider</span> <span class="pl-c1">=</span> <span class="pl-s1">ethers</span><span class="pl-kos">.</span><span class="pl-c1">provider</span><span class="pl-kos">;</span>
+
+    <span class="pl-c">// 打印当前网络的区块高度</span>
+    <span class="pl-k">const</span> <span class="pl-s1">blockNumber</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">provider</span><span class="pl-kos">.</span><span class="pl-en">getBlockNumber</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"当前网络的区块高度："</span><span class="pl-kos">,</span> <span class="pl-s1">blockNumber</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+    <span class="pl-c">// 部署一个简单的合约</span>
+    <span class="pl-k">const</span> <span class="pl-v">MyContract</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-s1">ethers</span><span class="pl-kos">.</span><span class="pl-en">getContractFactory</span><span class="pl-kos">(</span><span class="pl-s">"MyContract"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-k">const</span> <span class="pl-s1">contract</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-v">MyContract</span><span class="pl-kos">.</span><span class="pl-en">deploy</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s">"合约地址："</span><span class="pl-kos">,</span> <span class="pl-s1">contract</span><span class="pl-kos">.</span><span class="pl-c1">address</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span>
+
+<span class="pl-c">// 执行我们的代码逻辑</span>
+<span class="pl-en">main</span><span class="pl-kos">(</span><span class="pl-kos">)</span>
+<span class="pl-kos">.</span><span class="pl-en">then</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">process</span><span class="pl-kos">.</span><span class="pl-en">exit</span><span class="pl-kos">(</span><span class="pl-c1">0</span><span class="pl-kos">)</span><span class="pl-kos">)</span>
+<span class="pl-kos">.</span><span class="pl-en">catch</span><span class="pl-kos">(</span><span class="pl-s1">error</span> <span class="pl-c1">=&gt;</span> <span class="pl-kos">{</span>
+    <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">error</span><span class="pl-kos">(</span><span class="pl-s1">error</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+    <span class="pl-s1">process</span><span class="pl-kos">.</span><span class="pl-en">exit</span><span class="pl-kos">(</span><span class="pl-c1">1</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<p>运行</p>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">npx hardhat run .\scripts\hre.js</pre></div>
+<p>输出</p>
+<div class="highlight highlight-source-batchfile"><pre class="notranslate">当前网络的区块高度： <span class="pl-c1">0</span>
+合约地址： <span class="pl-c1">0x5FbDB2315678afecb367f032d93F642f64180aa3</span></pre></div>
+<p>HRE 作用一目了然。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://c-slin.github.io"> 陈书琳 </a>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://c-slin.icu"> 陈书琳 </a>
 <p>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
